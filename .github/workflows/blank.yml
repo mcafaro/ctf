@@ -34,15 +34,10 @@ jobs:
         with:
           release: R2021a
           
-      - run: echo "" > $GITHUB_PATH
-      
-      - name: Display system path
-        run: echo $PATH
-          
       - name: Run MATLAB Command
         uses: matlab-actions/run-command@v1.1.2
         with:
-          command: buildResults = compiler.build.productionServerArchive('addmatrix.m','Verbose','on');
+          command: setenv("PATH",""); buildResults = compiler.build.productionServerArchive('addmatrix.m','Verbose','on');
         env:
           MATHWORKS_TOKEN: ${{ secrets.MATHWORKS_TOKEN }}
           MATHWORKS_ACCOUNT: ${{ secrets.MATHWORKS_ACCOUNT }}
